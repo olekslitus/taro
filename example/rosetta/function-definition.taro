@@ -9,3 +9,34 @@
   (-2 1) => -2
   (0 2)  =>  0
   (2 '3) =>  error:fail)
+
+
+
+
+;; True if two destinations are lexicographicly-ordered
+(define (railroad<? dest-a dest-b)
+  (define rail-a-city-a (railroad-city-a dest-a))
+  (define rail-a-city-b (railroad-city-b dest-a))
+  (define rail-b-city-a (railroad-city-a dest-b))
+  (define rail-b-city-b (railroad-city-b dest-b))
+  (cond 
+    [(city::city<? rail-a-city-a rail-b-city-a) #true]
+    [(=? rail-a-city-a rail-b-city-a) (city::city<? rail-a-city-b rail-b-city-b)]
+    [else #false]))
+
+
+
+(@ "True if two destinations are lexicographicly-ordered")
+(? RAILROAD-A-B RAILROAD-B-C -> true)
+(: Destination Destination -> Bool)
+(def (railroad<? rail-a rail-b)
+  (bind (railroad rail-a-city-a rail-a-city-b) rail-a)
+  (bind (railroad rail-a-city-a rail-a-city-b) rail-a)
+  {cond
+    [(city<? rail-a-city-a rail-b-city-a) => true]
+    [(=? rail-a-city-a rail-b-city-a)     => (city<? rail-a-city-b rail-b-city-b)]
+    [default                              => false]})
+
+
+(define (? . things)
+  (module+ example (define ...)))
