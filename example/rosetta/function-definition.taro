@@ -1,0 +1,11 @@
+#lang taro
+
+(@ "A simple function definition that takes 2 arguments.")
+(? (2 2) => 4)
+(: Number Number -> Number)
+(def (multiply a b) (* a b))
+
+(? multiply
+  (-2 1) => -2
+  (0 2)  =>  0
+  (2 '3) =>  error:fail)
