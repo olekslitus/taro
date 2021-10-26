@@ -1,4 +1,4 @@
 #lang racket/base
 
-(provide (raname-out [define def]
+(provide (rename-out [define def]
                      [match-define bind]))
